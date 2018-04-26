@@ -1,0 +1,48 @@
+{
+  "name": "sipamen",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "array-merge-by-key": "^1.0.1",
+    "buffer": "^5.1.0",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.1",
+    "native-base": "^2.4.2",
+    "prop-types": "^15.6.1",
+    "react": "16.3.1",
+    "react-native": "0.55.3",
+    "react-native-banner-carousel": "^1.0.3",
+    "react-native-calendars": "^1.18.2",
+    "react-native-fetch-blob": "^0.10.8",
+    "react-native-image-crop-picker": "^0.20.1",
+    "react-native-image-picker": "^0.26.7",
+    "react-native-mail": "^3.0.6",
+    "react-native-modal": "^5.4.0",
+    "react-native-modal-datetime-picker": "^5.1.0",
+    "react-native-onesignal": "^3.1.4",
+    "react-native-parsed-text": "0.0.20",
+    "react-native-pdf": "^3.0.6",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.11",
+    "react-navigation-redux-debouncer": "0.0.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
+    "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1",
+    "reactotron-react-native": "^1.14.0",
+    "reactotron-redux": "^1.13.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
