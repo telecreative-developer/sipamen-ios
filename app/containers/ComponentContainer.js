@@ -96,7 +96,7 @@ class ComponentContainer extends React.Component {
   }
 
   handleAskLogout() {
-    this.setState({visibleModalHeader: false})
+    
     Alert.alert(
       'Keluar',
       'Apakah anda yakin ingin keluar dari aplikasi ini?',
