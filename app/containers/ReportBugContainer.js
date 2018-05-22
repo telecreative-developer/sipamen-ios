@@ -21,8 +21,7 @@ class ReportBugContainer extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.setNavigate("", "");
-    BackHandler.removeEventListener("hardwareBackPress", this.backPressed);
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
   }
 
   backPressed = () => {

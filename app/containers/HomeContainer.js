@@ -1,5 +1,14 @@
 import React from 'react'
-import { Image, Dimensions, Alert, TouchableHighlight, View, Text, StyleSheet } from 'react-native'
+import {
+  Image,
+  Dimensions,
+  Alert,
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet
+} from 'react-native'
+import OneSignal from 'react-native-onesignal'
 import { connect } from 'react-redux'
 import { setNavigate } from '../actions/processor'
 import Home from '../components/Home'
@@ -44,21 +53,40 @@ const bannerWidth = Dimensions.get('window').width
 const bannerHeight = height / 2.8
 
 class HomeContainer extends React.Component {
-
   async handleNavigateTo(item) {
     const { setNavigate, dataStandarKompetensi, pokUji } = this.props
-    if(item.type === 'standar-kompetensi') {
+    if (item.type === 'standar-kompetensi') {
       setNavigate('DocumentViewer', dataStandarKompetensi)
-    }else if(item.type === 'data-nilai') {
-      setNavigate('DocumentSection', {documentTitle: 'Data Nilai'})
-    }else if(item.type === 'data-serdik') {
-      setNavigate('DocumentList', {documentTitle: 'Data Serdik', documentSlug: 'data-serdik'})
-    }else if(item.type === 'kegiatan') {
+    } else if (item.type === 'data-nilai') {
+      setNavigate('ScoreList')
+    } else if (item.type === 'data-serdik') {
+      setNavigate('DocumentList', { documentTitle: 'Data Serdik', documentSlug: 'data-serdik' })
+    } else if (item.type === 'kegiatan') {
       setNavigate('Timeline', item)
-    }else if(item.type === 'handbook') {
-      setNavigate('DocumentList', {documentTitle: 'Handbook', documentSlug: 'handbook', download: true})
-    }else if(item.type === 'pok-uji') {
+    } else if (item.type === 'handbook') {
+      setNavigate('DocumentList', {
+        documentTitle: 'Handbook',
+        documentSlug: 'handbook',
+        download: true
+      })
+    } else if (item.type === 'pok-uji') {
       setNavigate('DocumentViewer', pokUji)
+    }
+  }
+
+  componentWillMount() {
+    OneSignal.addEventListener('opened', this.onOpened)
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('opened', this.onOpened)
+  }
+
+  onOpened = openResult => {
+    if (openResult.notification.payload.additionalData.screen === 'announcement') {
+      this.props.setNavigate('Announcement', openResult.notification.payload.additionalData.data)
+    } else if (openResult.notification.payload.additionalData.screen === 'score') {
+      this.props.setNavigate('ScoreList')
     }
   }
 
@@ -76,19 +104,19 @@ class HomeContainer extends React.Component {
     }
 
     return (
-      <TouchableHighlight onPress={() => this.handleNavigateTo(item)}>
+      <TouchableOpacity onPress={() => this.handleNavigateTo(item)}>
         <View style={styles.item}>
           <Image source={{ uri: item.icon }} style={styles.menuBoxIcon} />
           <Text style={styles.itemText}>{item.title}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 
   renderBanners(banner, index) {
     return (
       <View key={index} style={styles.banner}>
-        <Image style={styles.bannerImage} source={{uri: banner.banner_url}} />
+        <Image style={styles.bannerImage} source={{ uri: banner.banner_url }} />
       </View>
     )
   }
@@ -101,7 +129,8 @@ class HomeContainer extends React.Component {
         navigateInfo={() => this.handleNavigateInfo()}
         navigateCalendar={() => this.handleNavigateCalendar()}
         dataMenus={dataMenus}
-        renderMenus={this.renderMenus} />
+        renderMenus={this.renderMenus}
+      />
     )
   }
 }
@@ -127,14 +156,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    width: width / 3.33,
+    flex: 1,
     margin: 5,
-    height: height / 6,
+    width: width / 3.33,
+    height: height / 6
   },
   itemText: {
     fontSize: 10,
-    maxWidth: 100,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   bannerImage: {
     width: bannerWidth,
@@ -150,7 +179,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2f2f4f',
     marginRight: 0
-  },
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

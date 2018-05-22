@@ -28,11 +28,11 @@ class ComponentContainer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps !== this.prop) {
+    if (nextProps !== this.prop) {
       return true
     }
 
-    if(nextState !== this.state) {
+    if (nextState !== this.state) {
       return true
     }
 
@@ -41,68 +41,70 @@ class ComponentContainer extends React.Component {
 
   componentWillUpdate(nextProps) {
     const { navigate, navigation } = nextProps
-    if(navigate.link === 'EditProfile') {
+    if (navigate.link === 'EditProfile') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'ChangePassword') {
+    } else if (navigate.link === 'ChangePassword') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'ReportBug') {
+    } else if (navigate.link === 'ReportBug') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Calendar') {
+    } else if (navigate.link === 'Calendar') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Post') {
+    } else if (navigate.link === 'Post') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Event') {
+    } else if (navigate.link === 'Event') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Announcement') {
+    } else if (navigate.link === 'Announcement') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'CreatePost') {
+    } else if (navigate.link === 'CreatePost') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'DocumentViewer') {
+    } else if (navigate.link === 'DocumentViewer') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'DocumentList') {
+    } else if (navigate.link === 'DocumentList') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'DocumentSection') {
+    } else if (navigate.link === 'DocumentSection') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Timeline') {
+    } else if (navigate.link === 'Timeline') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'POKUji') {
+    } else if (navigate.link === 'POKUji') {
       navigation.navigate(navigate.link, navigate.data)
-    }else if(navigate.link === 'Score') {
+    } else if (navigate.link === 'Srcore') {
+      navigation.navigate(navigate.link, navigate.data)
+    } else if (navigate.link === 'ScoreList') {
       navigation.navigate(navigate.link, navigate.data)
     }
   }
 
   handleCloseModalHeader() {
-    this.setState({visibleModalHeader: false})
+    this.setState({ visibleModalHeader: false })
   }
 
   handleOpenModalHeader() {
-    this.setState({visibleModalHeader: true})
+    this.setState({ visibleModalHeader: true })
   }
 
   handleNavigateEditProfile() {
-    this.setState({visibleModalHeader: false})
+    this.setState({ visibleModalHeader: false })
     this.props.setNavigate('EditProfile', '')
   }
 
   handleNavigateChangePassword() {
-    this.setState({visibleModalHeader: false})
+    this.setState({ visibleModalHeader: false })
     this.props.setNavigate('ChangePassword', '')
   }
 
   handleNavigateReportBug() {
-    this.setState({visibleModalHeader: false})
+    this.setState({ visibleModalHeader: false })
     this.props.setNavigate('ReportBug', '')
   }
 
   handleAskLogout() {
-    
+    this.setState({ visibleModalHeader: false })
     Alert.alert(
       'Keluar',
       'Apakah anda yakin ingin keluar dari aplikasi ini?',
       [
-        {text: 'Batal', onPress: () => {}, style: 'cancel'},
-        {text: 'Keluar', onPress: () => this.handleLogout()},
+        { text: 'Batal', onPress: () => {}, style: 'cancel' },
+        { text: 'Keluar', onPress: () => this.handleLogout() }
       ],
       { cancelable: false }
     )
@@ -113,57 +115,57 @@ class ComponentContainer extends React.Component {
     this.props.navigation.dispatch(
       NavigationActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({routeName: 'Login'})]
+        actions: [NavigationActions.navigate({ routeName: 'Login' })]
       })
     )
   }
 
   handleActivePageFirst() {
-		this.props.setActivePageHome({
-			active: 1,
-			activePageFirst: true,
-			activePageSecond: false,
-			activePageThird: false,
-			activePageFourth: false,
-			activePageFifth: false,
-			title: 'Home'
-		})
-	}
+    this.props.setActivePageHome({
+      active: 1,
+      activePageFirst: true,
+      activePageSecond: false,
+      activePageThird: false,
+      activePageFourth: false,
+      activePageFifth: false,
+      title: 'Home'
+    })
+  }
 
-	handleActivePageSecond() {
-		this.props.setActivePageHome({
-			active: 2,
-			activePageFirst: false,
-			activePageSecond: true,
-			activePageThird: false,
-			activePageFourth: false,
-			activePageFifth: false,
-			title: 'Tweet'
-		})
-	}
+  handleActivePageSecond() {
+    this.props.setActivePageHome({
+      active: 2,
+      activePageFirst: false,
+      activePageSecond: true,
+      activePageThird: false,
+      activePageFourth: false,
+      activePageFifth: false,
+      title: 'Tweet'
+    })
+  }
 
-	handleActivePageThird() {
-		this.props.setActivePageHome({
-			active: 3,
-			activePageFirst: false,
-			activePageSecond: false,
-			activePageThird: true,
-			activePageFourth: false,
-			activePageFifth: false,
-			title: 'Notification'
-		})
-	}
+  handleActivePageThird() {
+    this.props.setActivePageHome({
+      active: 3,
+      activePageFirst: false,
+      activePageSecond: false,
+      activePageThird: true,
+      activePageFourth: false,
+      activePageFifth: false,
+      title: 'Notification'
+    })
+  }
 
-	handleActivePageFourth() {
-		this.props.setActivePageHome({
-			active: 4,
-			activePageFirst: false,
-			activePageSecond: false,
-			activePageThird: false,
-			activePageFourth: true,
-			activePageFifth: false,
-			title: 'Profile'
-		})
+  handleActivePageFourth() {
+    this.props.setActivePageHome({
+      active: 4,
+      activePageFirst: false,
+      activePageSecond: false,
+      activePageThird: false,
+      activePageFourth: true,
+      activePageFifth: false,
+      title: 'Profile'
+    })
   }
 
   renderHeader() {
@@ -171,46 +173,58 @@ class ComponentContainer extends React.Component {
     if (active === 2) {
       return (
         <Header hasTabs style={styles.header}>
-          <Left/>
-          <Body>
+          <Left>
             <Image source={logo} style={styles.logo} />
-          </Body>
+          </Left>
+          <Body />
           <Right>
-            <Icon name='ios-more' style={styles.icon} onPress={() => this.handleOpenModalHeader()} />
+            <Icon
+              name="ios-more"
+              style={styles.icon}
+              onPress={() => this.handleOpenModalHeader()}
+            />
           </Right>
         </Header>
       )
     } else if (active === 3) {
       return (
         <Header hasTabs style={styles.header}>
-          <Left/>
-          <Body>
+          <Left>
             <Image source={logo} style={styles.logo} />
-          </Body>
+          </Left>
+          <Body />
           <Right>
-            <Icon name='ios-more' style={styles.icon} onPress={() => this.handleOpenModalHeader()} />
+            <Icon
+              name="ios-more"
+              style={styles.icon}
+              onPress={() => this.handleOpenModalHeader()}
+            />
           </Right>
         </Header>
       )
     } else if (active === 4) {
       return (
         <Header hasTabs style={styles.header}>
-          <Left/>
-          <Body>
+          <Left>
             <Image source={logo} style={styles.logo} />
-          </Body>
+          </Left>
+          <Body />
           <Right>
-            <Icon name='ios-more' style={styles.icon} onPress={() => this.handleOpenModalHeader()} />
+            <Icon
+              name="ios-more"
+              style={styles.icon}
+              onPress={() => this.handleOpenModalHeader()}
+            />
           </Right>
         </Header>
       )
     }
     return (
       <Header hasTabs style={styles.headerStart}>
-        <Left/>
-        <Body>
+        <Left>
           <Image source={logo} style={styles.logo} />
-        </Body>
+        </Left>
+        <Body />
         <Right>
           <Icon name="ios-more" style={styles.icon} onPress={() => this.handleOpenModalHeader()} />
         </Right>
@@ -229,7 +243,7 @@ class ComponentContainer extends React.Component {
     }
     return <HomeContainer />
   }
-  
+
   render() {
     const { visibleModalHeader } = this.state
     const { activePageHome } = this.props
@@ -250,15 +264,16 @@ class ComponentContainer extends React.Component {
         handleActivePageThird={() => this.handleActivePageThird()}
         activePageThird={activePageHome.activePageThird}
         handleActivePageFourth={() => this.handleActivePageFourth()}
-        activePageFourth={activePageHome.activePageFourth} />
+        activePageFourth={activePageHome.activePageFourth}
+      />
     )
   }
 }
 
 const mapStateToProps = state => ({
   navigate: state.navigate,
-	activePageHome: state.activePageHome,
-	sessionPersistance: state.sessionPersistance
+  activePageHome: state.activePageHome,
+  sessionPersistance: state.sessionPersistance
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -268,23 +283,20 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#106538"
+    backgroundColor: '#106538'
   },
   headerStart: {
-    backgroundColor: "transparent",
-    position: "absolute",
+    backgroundColor: 'transparent',
+    position: 'absolute',
     zIndex: 999
   },
   logo: {
     width: 150,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
     height: 150
   },
   icon: {
-    color: "#fff"
-  },
+    color: '#fff'
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComponentContainer)

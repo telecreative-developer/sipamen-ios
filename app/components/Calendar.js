@@ -7,12 +7,12 @@ import { Agenda } from 'react-native-calendars'
 
 const Calendar = (props) => (
   <Container style={styles.container}>
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Icon name='arrow-back' style={styles.icon} onPress={props.handleBack} />
       </Left>
       <Body>
-        <Title style={styles.headerText}>Kalender</Title>
+        <Title>Kalender</Title>
       </Body>
       <Right />
     </Header>
@@ -42,12 +42,6 @@ Calendar.propTypes = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff'
-  },
-  header:{
-    backgroundColor: '#146639'
-  },
-  headerText:{
-    color: '#fff'
   },
   icon: {
     color: '#fff'

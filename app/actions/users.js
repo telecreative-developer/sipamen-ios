@@ -46,11 +46,12 @@ export const updateProfile = (id, item, password, accessToken) => {
 			} else {
 				await dispatch(login(item.email, password))
 				await dispatch(setSuccess(true, 'SUCCESS_UPDATE_PROFILE'))
-				await dispatch(setLoading(false, 'LOADING_UPDATE_PROFILE'))
 				await dispatch(setSuccess(false, 'SUCCESS_UPDATE_PROFILE'))
+				await dispatch(setLoading(false, 'LOADING_UPDATE_PROFILE'))
 			}
 		} catch (e) {
 			dispatch(setFailed(true, 'FAILED_UPDATE_PROFILE', e))
+			dispatch(setFailed(false, 'FAILED_UPDATE_PROFILE', e))
 			dispatch(setLoading(false, 'LOADING_UPDATE_PROFILE'))
 		}
 	}
@@ -72,9 +73,11 @@ export const updateProfileWithImage = (id, image, item, password, accessToken) =
 			const data = await response.json()
 			await dispatch(updateProfile(id, {avatar_url: `${API_SERVER}/files/users/avatars/${data.id}`, ...item}, password, accessToken))
 			await dispatch(setSuccess(true, 'SUCCESS_UPDATE_PROFILE'))
+			await dispatch(setSuccess(false, 'SUCCESS_UPDATE_PROFILE'))
 			await dispatch(setLoading(false, 'LOADING_UPDATE_PROFILE'))
 		} catch (e) {
 			await dispatch(setFailed(true, 'FAILED_UPDATE_PROFILE', e))
+			await dispatch(setFailed(false, 'FAILED_UPDATE_PROFILE', e))
 			await dispatch(setLoading(false, 'LOADING_UPDATE_PROFILE'))
 		}
 	}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Dimensions, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body, Input, Item } from 'native-base'

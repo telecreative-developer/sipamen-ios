@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  TouchableNativeFeedback,
+  TouchableOpacity,
+  StatusBar
 } from 'react-native'
 import {
   Container,
@@ -26,12 +27,16 @@ const { height, width } = Dimensions.get('window')
 
 const ChangePassword = (props) => (
   <Container style={styles.container}>
+    <StatusBar
+      backgroundColor="#fff"
+      barStyle="light-content"
+    />
     <Header style={styles.header}>
       <Left>
         <Icon name='md-arrow-back' style={styles.icon} onPress={props.handleBack} />
       </Left>
       <Body style={styles.flexHeader}>
-        <Title style={styles.headerText}>Ganti Kata Sandi</Title>
+        <Title style={{color: '#fff'}}>Ganti Kata Sandi</Title>
       </Body>
       <Right />
     </Header>
@@ -69,9 +74,6 @@ ChangePassword.propTypes = {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#106538"
-  },
-  headerText:{
-    color: '#fff'
   },
   icon: {
     color: "#fff"

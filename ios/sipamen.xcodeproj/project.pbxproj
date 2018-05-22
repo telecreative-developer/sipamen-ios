@@ -37,6 +37,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		FA17537520AEC654008AEBA8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA17537320AEC654008AEBA8 /* LaunchScreen.xib */; };
 		FA3775432090F56900630E53 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA37753F2090D49000630E53 /* libRCTPushNotification.a */; };
 		FA37757E2091011700630E53 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA37757D2091010700630E53 /* libRNFetchBlob.a */; };
 		FA3775902091BEDB00630E53 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA37758F2091BEBE00630E53 /* libRCTOneSignal.a */; };
@@ -401,6 +402,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		FA17537420AEC654008AEBA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "../../trisakti-connect-ios/ios/TrisaktiConnect/Base.lproj/LaunchScreen.xib"; sourceTree = "<group>"; };
 		FA3775392090D49000630E53 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		FA3775512091010700630E53 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		FA37758A2091BEBE00630E53 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				FA17537320AEC654008AEBA8 /* LaunchScreen.xib */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -1271,6 +1274,7 @@
 				FA3775982091C64100630E53 /* Ionicons.ttf in Resources */,
 				FA3775A52091CFF800630E53 /* MaterialIcons.ttf in Resources */,
 				FA37759C2091C6C600630E53 /* Entypo.ttf in Resources */,
+				FA17537520AEC654008AEBA8 /* LaunchScreen.xib in Resources */,
 				FA37759A2091C68A00630E53 /* SourceSansPro-SemiBold.ttf in Resources */,
 				FA3775962091C47900630E53 /* SourceSansPro-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -1375,6 +1379,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		FA17537320AEC654008AEBA8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA17537420AEC654008AEBA8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1429,6 +1444,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sipamen;
 				PRODUCT_NAME = sipamen;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1449,6 +1465,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sipamen;
 				PRODUCT_NAME = sipamen;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

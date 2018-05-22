@@ -2,6 +2,7 @@ import React from 'react'
 import Profile from '../components/Profile'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import OneSignal from 'react-native-onesignal'
 import { fetchMyPosts } from '../actions/posts'
 import { setNavigate } from '../actions/processor'
 
@@ -16,9 +17,25 @@ class ProfileContainer extends React.PureComponent {
 
   async componentWillMount() {
     const { fetchMyPosts, sessionPersistance } = await this.props
-    await this.setState({refreshing: true})
+    await this.setState({ refreshing: true })
     await fetchMyPosts(sessionPersistance.id, sessionPersistance.accessToken)
-    await this.setState({refreshing: false})
+    await this.setState({ refreshing: false })
+  }
+
+  componentDidMount() {
+    OneSignal.addEventListener('opened', this.onOpened)
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('opened', this.onOpened)
+  }
+
+  onOpened = openResult => {
+    if (openResult.notification.payload.additionalData.screen === 'announcement') {
+      this.props.setNavigate('Announcement', openResult.notification.payload.additionalData.data)
+    } else if (openResult.notification.payload.additionalData.screen === 'score') {
+      this.props.setNavigate('ScoreList')
+    }
   }
 
   handleNavigateToPost(item) {
@@ -28,9 +45,9 @@ class ProfileContainer extends React.PureComponent {
 
   async handleRefresh() {
     const { fetchMyPosts, sessionPersistance } = await this.props
-    await this.setState({refreshing: true})
+    await this.setState({ refreshing: true })
     await fetchMyPosts(sessionPersistance.id, sessionPersistance.accessToken)
-    await this.setState({refreshing: false})
+    await this.setState({ refreshing: false })
   }
 
   render() {
@@ -48,8 +65,8 @@ class ProfileContainer extends React.PureComponent {
         birthOfPlace={sessionPersistance.bop}
         birthOfDate={moment(sessionPersistance.bod).format('LL')}
         nrk={scores.nrk}
-        nad={scores.nad}>
-      </Profile>
+        nad={scores.nad}
+      />
     )
   }
 }

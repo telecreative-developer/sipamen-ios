@@ -11,12 +11,16 @@ import { twitterToken, tweets } from './twitter'
 import { scores } from './scores'
 import { dataImages } from './images'
 import { banners } from "./banners"
+import { academiccategories } from "./academiccategories"
+import { academicscores } from "./academicscores"
+import { titlescores } from "./titlescores"
 
 const rootReducers = combineReducers({
   posts, events, banners, comments, sessionPersistance, notifications,
   loading, loadingDownload, success, successDownload, failed, failedDownload,
   navigate, activePageHome, myPosts, generalNotificationEvents, generalNotificationAnnouncements, twitterToken,
-  dataStandarKompetensi, dataSerdik, dataHandbook, dataInfoSespimmen, pokUji, tweets, scores, dataImages
+  dataStandarKompetensi, dataSerdik, dataHandbook, dataInfoSespimmen, pokUji, tweets, scores, dataImages, 
+  academiccategories, academicscores, titlescores
 })
 
 export default rootReducers

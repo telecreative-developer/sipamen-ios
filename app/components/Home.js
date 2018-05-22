@@ -10,7 +10,7 @@ const bannerWidth = Dimensions.get('window').width
 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns)
-  let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns)
+  let numberOfElementsLastRow = data.length - numberOfFullRows * numColumns
   while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true })
     numberOfElementsLastRow++
@@ -20,32 +20,31 @@ const formatData = (data, numColumns) => {
 
 const numColumns = 3
 
-const Home = (props) => (
+const Home = props => (
   <Container>
-     <StatusBar
-      backgroundColor="#146639"
-      barStyle="light-content"
-    />
-    <Carousel
-      autoplay={true}
-      autoplayTimeout={2000}
-      loop={true}
-      index={0}
-      pageSize={bannerWidth}>
+    <StatusBar
+     backgroundColor="#fff"
+     barStyle="light-content"
+   />
+    <Carousel autoplay={true} autoplayTimeout={2000} loop={true} index={0} pageSize={bannerWidth}>
       {props.banners}
     </Carousel>
     <Content showsVerticalScrollIndicator={false}>
       <Grid style={styles.grid}>
         <Col style={styles.leftCol}>
           <Button transparent onPress={props.navigateInfo} style={styles.buttonDouble}>
-            <Icon name='md-information-circle' style={styles.icon} />
-            <Text style={styles.topButtonText} uppercase={false}>Info Sespimmen</Text>
+            <Icon name="md-information-circle" style={styles.icon} />
+            <Text style={styles.topButtonText} uppercase={false}>
+              Info Sespimmen
+            </Text>
           </Button>
         </Col>
         <Col style={styles.rightCol}>
           <Button transparent onPress={props.navigateCalendar} style={styles.buttonDouble}>
-            <Icon name='md-calendar' style={styles.icon} />
-            <Text style={styles.topButtonText} uppercase={false}>Kalender</Text>
+            <Icon name="md-calendar" style={styles.icon} />
+            <Text style={styles.topButtonText} uppercase={false}>
+              Kalender
+            </Text>
           </Button>
         </Col>
       </Grid>
@@ -55,8 +54,10 @@ const Home = (props) => (
           showsVerticalScrollIndicator={false}
           data={formatData(props.dataMenus, numColumns)}
           style={styles.container}
+          keyExtractor={(item, index) => JSON.stringify(index)}
           renderItem={props.renderMenus}
-          numColumns={numColumns} />
+          numColumns={numColumns}
+        />
       </View>
     </Content>
   </Container>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: height / 18,
     borderBottomWidth: 1,
-    borderColor: '#D9D5DC',
+    borderColor: '#D9D5DC'
   },
   boxMenu: {
     padding: 10

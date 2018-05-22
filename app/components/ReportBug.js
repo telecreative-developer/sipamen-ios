@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Dimensions, BackHandler } from 'react-native'
+import { StyleSheet, View, Dimensions, BackHandler, StatusBar } from 'react-native'
 import { Container, Header, Left, Icon, Right, Body, Text, Button, Spinner, Item, Input } from 'native-base'
 import Mailer from 'react-native-mail'
 import PropTypes from 'prop-types'
@@ -9,6 +9,10 @@ const { height, width } = Dimensions.get('window')
 
 const ReportBug = (props) => (
   <Container style={styles.container}>
+    <StatusBar
+      backgroundColor="#fff"
+      barStyle="light-content"
+    />
     <Header hasTabs style={styles.header}>
       <Left>
         <Icon name='md-arrow-back' style={styles.icon} onPress={props.handleBack} />

@@ -2,7 +2,8 @@ import React from 'react'
 import {
   StyleSheet,
   Dimensions,
-  View
+  View,
+  StatusBar
 } from 'react-native'
 import {
   Container,
@@ -27,6 +28,10 @@ const { height, width } = Dimensions.get('window')
 
 const Profile = (props) => (
   <Container style={styles.container}>
+    <StatusBar
+      backgroundColor="#fff"
+      barStyle="light-content"
+    />
     {props.children}
     <Content showsVerticalScrollIndicator={false}>
       <View style={styles.profileHeader}>

@@ -6,14 +6,14 @@ import PropTypes from 'prop-types'
 
 const DocumentList = (props) => (
   <Container style={styles.container}>
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Button transparent onPress={props.handleBack}>
           <Icon name='arrow-back' />
         </Button>
       </Left>
       <Body>
-        <Title style={styles.headerText}>{props.documentTitle}</Title>
+        <Title>{props.documentTitle}</Title>
       </Body>
       <Right>
         {props.refreshing ? (
@@ -44,12 +44,6 @@ DocumentList.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  headerText:{
-    color: '#fff'
-  },
-  header:{
-    backgroundColor: '#146639'
-  },
   container: {
     backgroundColor: '#FFFFFF'
   }

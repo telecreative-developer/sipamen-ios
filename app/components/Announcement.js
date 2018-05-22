@@ -4,18 +4,17 @@ import PropTypes from 'prop-types'
 import { Container, Header, Left, Button, Icon, Body, Title, Subtitle, Content, Right, Text } from 'native-base'
 import moment from 'moment'
 import ThemeContainer from '../particles/ThemeContainer'
-import { SAVE_SESSION_PERSISTANCE } from '../constants';
 
 const Announcement = (props) => (
   <Container style={styles.container}>
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Button transparent onPress={props.handleBack}>
           <Icon name='arrow-back' />
         </Button>
       </Left>
       <Body>
-        <Title style={styles.headerText}>Pengumuman</Title>
+        <Title>Pengumuman</Title>
         <Subtitle style={styles.subtitle}>{moment(props.createdAt).format('LLL')}</Subtitle>
       </Body>
       <Right />
@@ -38,18 +37,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF'
   },
-  header:{
-    backgroundColor: '#146639'
-  },
-  headerText:{
-    color: '#fff'
-  },
   content: {
     marginHorizontal: 15,
     marginVertical: 15
   },
   subtitle: {
-    color: '#fff',
     fontSize: 12
   }
 })

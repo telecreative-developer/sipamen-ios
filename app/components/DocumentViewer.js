@@ -12,14 +12,14 @@ const { width, height } = Dimensions.get('window')
 const DocumentViewer = (props) => (
   <Container>
     {!props.documentFullscreen && (
-      <Header style={styles.header}>
+      <Header>
         <Left>
           <Button transparent onPress={props.handleBack}>
             <Icon name='arrow-back' />
           </Button>
         </Left>
         <Body>
-          <Title style={styles.headerText}>{props.documentTitle}</Title>
+          <Title>{props.documentTitle}</Title>
           {props.documentSubtitle && (
             <Subtitle>{props.documentSubtitle}</Subtitle>
           )}
@@ -72,12 +72,6 @@ DocumentViewer.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: '#146639'
-  },
-  headerText:{
-    color: '#fff'
-  },
   pdf: {
     flex:1,
     width: width,

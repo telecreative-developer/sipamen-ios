@@ -7,14 +7,14 @@ import box from '../assets/images/box.png'
 
 const DocumentSection = (props) => (
   <Container style={styles.container}>
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Button transparent onPress={props.handleBack}>
           <Icon name='arrow-back' />
         </Button>
       </Left>
       <Body>
-        <Title style={styles.headerText}>{props.documentTitle}</Title>
+        <Title>{props.documentTitle}</Title>
       </Body>
       <Right>
         {props.refreshing ? (
@@ -52,12 +52,6 @@ DocumentSection.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: '#146639'
-  },
-  headerText:{
-    color: '#fff'
-  },
   container: {
     backgroundColor: '#FFFFFF'
   }

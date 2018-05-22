@@ -1,11 +1,15 @@
 import React from 'react'
-import { StyleSheet, FlatList, View, Image } from 'react-native'
+import { StyleSheet, FlatList, View, Image, StatusBar } from 'react-native'
 import { Container, Tabs, Tab, Content, Text } from 'native-base'
 import PropTypes from 'prop-types'
 import box from '../assets/images/box.png'
 
 const Notification = (props) => (
   <Container style={styles.container}>
+    <StatusBar
+        backgroundColor="#fff"
+        barStyle="light-content"
+      />
     <Content>
       <Tabs style={styles.tabs}>
         <Tab heading='Timeline'>

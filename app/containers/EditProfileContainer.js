@@ -21,7 +21,8 @@ class EditProfileContainer extends React.Component {
       bod: '',
       forceOf: '',
       email: '',
-      password: ''
+      password: '',
+      loading: false
     }
   }
 
@@ -45,8 +46,8 @@ class EditProfileContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.setNavigate("", "");
-    BackHandler.removeEventListener("hardwareBackPress", this.backPressed);
+    this.props.setNavigate()
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
   }
 
   backPressed = () => {
@@ -72,22 +73,32 @@ class EditProfileContainer extends React.Component {
     return false
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const { loading, success, failed } = nextProps
-    if(loading.condition === false &&
-      loading.process_on === 'LOADING_UPDATE_PROFILE' &&
-      success.condition === true &&
-      success.process_on === 'SUCCESS_UPDATE_PROFILE') {
-      this.handleBack()
-      ToastAndroid.show('Profile berhasil diubah', ToastAndroid.SHORT)
+  getSnapshotBeforeUpdate(prevProps) {
+    if(prevProps.success.condition && prevProps.success.process_on === 'SUCCESS_UPDATE_PROFILE') {
+      return {
+        success: true,
+        message: 'Berhasil mengedit profil'
+      }
+    }else if(prevProps.failed.condition && prevProps.failed.process_on === 'FAILED_UPDATE_PROFILE') {
+      return {
+        success: false,
+        message: 'Gagal mengedit profil'
+      }
     }
 
-    if(loading.condition === false &&
-      loading.process_on === 'LOADING_UPDATE_PROFILE' &&
-      failed.condition === true &&
-      failed.process_on === 'FAILED_UPDATE_PROFILE') {
-      this.handleBack()
-      ToastAndroid.show(failed.message, ToastAndroid.SHORT)
+    return null
+  }
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if(snapshot !== null) {
+      if(snapshot.success) {
+        await ToastAndroid.show(snapshot.message, ToastAndroid.SHORT)
+        await prevProps.navigation.goBack()
+        await this.setState({loading: false})
+      }else {
+        await ToastAndroid.show(snapshot.message, ToastAndroid.SHORT)
+        await this.setState({loading: false})
+      }
     }
   }
 
@@ -108,6 +119,7 @@ class EditProfileContainer extends React.Component {
     const { avatarBase64, firstName, lastName, gender, bop, bod, forceOf, email, password } = this.state
     
     if(avatarBase64 === '') {
+      this.setState({loading: true})
       updateProfile(sessionPersistance.id, {
         first_name: firstName,
         last_name: lastName,
@@ -118,6 +130,7 @@ class EditProfileContainer extends React.Component {
         email: email
       }, password, sessionPersistance.accessToken)
     }else{
+      this.setState({loading: true}) 
       updateProfileWithImage(sessionPersistance.id, avatarBase64, {
         first_name: firstName,
         last_name: lastName,
@@ -151,12 +164,6 @@ class EditProfileContainer extends React.Component {
 			}
 		})
   }
-  
-  async handleBack() {
-    const { navigation, setNavigate } = await this.props
-    await setNavigate()
-    await navigation.goBack()
-  }
 
   render() {
     const { visibleDatePicker, avatar, firstName, lastName, gender, bop, bod, forceOf } = this.state
@@ -166,7 +173,7 @@ class EditProfileContainer extends React.Component {
         visibleDatePicker={visibleDatePicker}
         handlePickDate={date => this.handlePickDate(date)}
         handleCancelPickDate={() => this.closeDatePicker()}
-        handleBack={() => this.handleBack()}
+        handleBack={() => this.props.navigation.goBack()}
         avatar={avatar}
         handlePickAvatar={() => this.handlePickAvatar()}
         onChangeFirstName={(firstName) => this.setState({firstName})}
@@ -182,7 +189,7 @@ class EditProfileContainer extends React.Component {
         onChangeForceOf={(forceOf) => this.setState({forceOf})}
         forceOf={forceOf}
         handleSaveProfile={() => this.handleSaveProfile()}
-        loadingSaveProfile={loading.condition === true && loading.process_on === 'LOADING_UPDATE_PROFILE' ? true : false} />
+        loadingSaveProfile={this.state.loading} />
     )
   }
 }

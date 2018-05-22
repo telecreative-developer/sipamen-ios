@@ -16,6 +16,10 @@ import DocumentViewerContainer from './app/containers/DocumentViewerContainer'
 import TimelineContainer from './app/containers/TimelineContainer'
 import RegisterContainer from "./app/containers/RegisterContainer"
 import AnnouncementContainer from "./app/containers/AnnouncementContainer"
+import ScoreListContainer from './app/containers/ScoreListContainer'
+import AcademicCategoriesContainer from './app/containers/AcademicCategoriesContainer'
+import AcademicScoresContainer from './app/containers/AcademicScoresContainer'
+import TitleScoresContainer from './app/containers/TitleScoresContainer'
 
 const AppNavigator = StackNavigator({
   Splash: {screen: SplashContainer},
@@ -33,7 +37,11 @@ const AppNavigator = StackNavigator({
   Announcement: {screen: AnnouncementContainer},
   DocumentList: {screen: DocumentListContainer},
   DocumentSection: {screen: DocumentSectionContainer},
-  DocumentViewer: {screen: DocumentViewerContainer}
+  DocumentViewer: {screen: DocumentViewerContainer},
+  ScoreList: { screen: ScoreListContainer },
+  AcademicCategories: { screen: AcademicCategoriesContainer },
+  AcademicScores: { screen: AcademicScoresContainer },
+  TitleScores: { screen: TitleScoresContainer }
 }, {
   headerMode: 'none'
 })

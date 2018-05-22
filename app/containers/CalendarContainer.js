@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from 'native-base'
-import { View, Text, StyleSheet, BackHandler, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, BackHandler, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { setNavigate } from '../actions/processor'
 import Calendar from '../components/Calendar'
@@ -14,8 +14,7 @@ class CalendarContainer extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.setNavigate("", "");
-    BackHandler.removeEventListener("hardwareBackPress", this.backPressed);
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
   }
 
   backPressed = () => {
@@ -31,7 +30,7 @@ class CalendarContainer extends React.PureComponent {
   renderItem(item) {
     const { navigate } = this.props.navigation
     return (
-      <TouchableHighlight onPress={() => navigate('Event', item)}>
+      <TouchableOpacity onPress={() => navigate('Event', item)}>
         <View style={[styles.item, {height: item.height}]}>
           <View style={styles.viewContainer}>
             <Text style={styles.textTitle}>{item.title}</Text>
@@ -48,7 +47,7 @@ class CalendarContainer extends React.PureComponent {
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 

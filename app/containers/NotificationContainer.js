@@ -4,6 +4,7 @@ import Notification from '../components/Notification'
 import { ListItem, Left, Thumbnail, Body, Text, Right } from 'native-base'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import OneSignal from 'react-native-onesignal'
 import { fetchNotifications, fetchGeneralNotifications } from '../actions/notifications'
 import defaultAvatar from '../assets/images/default-avatar.jpg'
 import { setNavigate } from '../actions/processor'
@@ -22,26 +23,47 @@ class NotificationContainer extends React.PureComponent {
     this.handleRefresh()
   }
 
+  componentWillMount() {
+    OneSignal.addEventListener('opened', this.onOpened)
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('opened', this.onOpened)
+  }
+
+  onOpened = openResult => {
+    if (openResult.notification.payload.additionalData.screen === 'announcement') {
+      this.props.setNavigate('Announcement', openResult.notification.payload.additionalData.data)
+    } else if (openResult.notification.payload.additionalData.screen === 'score') {
+      this.props.setNavigate('ScoreList')
+    }
+  }
+
   notificationText(type, content) {
-    if(type === 'comment') {
+    if (type === 'comment') {
       return <Text note>{`mengomentari kiriman anda: "${content}"`}</Text>
-    }else if(type === 'event') {
+    } else if (type === 'event') {
       return <Text note>{`membuat kegiatan baru: "${content}"`}</Text>
-    }else if(type === 'announcement') {
+    } else if (type === 'announcement') {
       return <Text note numberOfLines={2}>{`membuat pengumuman baru: "${content}"`}</Text>
     }
   }
 
   async handleRefresh() {
     const { fetchNotifications, fetchGeneralNotifications, sessionPersistance } = await this.props
-    await this.setState({refreshing: true})
+    await this.setState({ refreshing: true })
     await fetchNotifications(sessionPersistance.id, sessionPersistance.accessToken)
     await fetchGeneralNotifications(sessionPersistance.accessToken)
-    await this.setState({refreshing: false})
+    await this.setState({ refreshing: false })
   }
 
   render() {
-    const { notifications, generalNotificationEvents, generalNotificationAnnouncements, setNavigate } = this.props
+    const {
+      notifications,
+      generalNotificationEvents,
+      generalNotificationAnnouncements,
+      setNavigate
+    } = this.props
     return (
       <Notification
         loadingNotifications={this.state.refreshing}
@@ -49,12 +71,15 @@ class NotificationContainer extends React.PureComponent {
         notifications={notifications}
         generalNotificationEvents={generalNotificationEvents}
         generalNotificationAnnouncements={generalNotificationAnnouncements}
-        renderTimelineNotifications={({item}) => (
-          <ListItem avatar style={styles.listNotification} onPress={() => setNavigate('Post', {...item.posts[0], users: item.users})}>
+        renderTimelineNotifications={({ item }) => (
+          <ListItem
+            avatar
+            style={styles.listNotification}
+            onPress={() => setNavigate('Post', { ...item.posts[0], users: item.users })}>
             <Left>
               {item.users ? (
                 item.users[0].avatar_url ? (
-                  <Thumbnail source={{uri: item.users[0].avatar_url}} />
+                  <Thumbnail source={{ uri: item.users[0].avatar_url }} />
                 ) : (
                   <Thumbnail source={defaultAvatar} />
                 )
@@ -63,7 +88,9 @@ class NotificationContainer extends React.PureComponent {
               )}
             </Left>
             <Body>
-              <Text note style={styles.name}>{`${item.users[0].first_name} ${item.users[0].last_name} `}</Text>
+              <Text note style={styles.name}>{`${item.users[0].first_name} ${
+                item.users[0].last_name
+              } `}</Text>
               {this.notificationText(item.type, item.content)}
             </Body>
             <Right>
@@ -71,13 +98,18 @@ class NotificationContainer extends React.PureComponent {
             </Right>
           </ListItem>
         )}
-        renderEventNotifications={({item}) => (
-          <ListItem avatar style={styles.listNotification} onPress={() => setNavigate('Event', {...item.events[0]})}>
+        renderEventNotifications={({ item }) => (
+          <ListItem
+            avatar
+            style={styles.listNotification}
+            onPress={() => setNavigate('Event', { ...item.events[0] })}>
             <Left>
               <Thumbnail source={defaultAvatar} />
             </Left>
             <Body>
-              <Text note style={styles.name}>Admin</Text>
+              <Text note style={styles.name}>
+                Admin
+              </Text>
               {this.notificationText(item.type, item.events[0].title)}
             </Body>
             <Right>
@@ -85,20 +117,26 @@ class NotificationContainer extends React.PureComponent {
             </Right>
           </ListItem>
         )}
-        renderAnnouncementNotifications={({item}) => (
-          <ListItem avatar style={styles.listNotification} onPress={() => setNavigate('Announcement', {...item.announcements[0]})}>
+        renderAnnouncementNotifications={({ item }) => (
+          <ListItem
+            avatar
+            style={styles.listNotification}
+            onPress={() => setNavigate('Announcement', { ...item.announcements[0] })}>
             <Left>
               <Thumbnail source={defaultAvatar} />
             </Left>
             <Body>
-              <Text note style={styles.name}>Admin</Text>
+              <Text note style={styles.name}>
+                Admin
+              </Text>
               {this.notificationText(item.type, item.announcements[0].announcement)}
             </Body>
             <Right>
               <Text note>{moment(item.createdAt).format('LT')}</Text>
             </Right>
           </ListItem>
-        )} />
+        )}
+      />
     )
   }
 }
@@ -123,7 +161,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setNavigate: (link, data) => dispatch(setNavigate(link, data)),
   fetchNotifications: (myid, accessToken) => dispatch(fetchNotifications(myid, accessToken)),
-  fetchGeneralNotifications: (accessToken) => dispatch(fetchGeneralNotifications(accessToken))
+  fetchGeneralNotifications: accessToken => dispatch(fetchGeneralNotifications(accessToken))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationContainer)

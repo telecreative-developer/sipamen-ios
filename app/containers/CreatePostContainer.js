@@ -45,8 +45,7 @@ class CreatePostContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.setNavigate("", "");
-    BackHandler.removeEventListener("hardwareBackPress", this.backPressed);
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
   }
 
   backPressed = () => {

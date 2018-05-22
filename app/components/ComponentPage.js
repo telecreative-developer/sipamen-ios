@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {
   StyleSheet,
   Dimensions,
-  TouchableHighlight,
+  TouchableOpacity,
   Image,
   Animated,
   View,
@@ -49,11 +49,11 @@ const ComponentPage = (props) => (
         <View style={styles.moreHeader}>
           <View style={styles.leftHeader} />
           <View style={styles.rightHeader}>
-            <TouchableHighlight
+            <TouchableOpacity
               underlayColor='transparent'
               onPress={props.closeModalHeader}>
               <Text style={styles.postButton}>CLOSE</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
         <View>

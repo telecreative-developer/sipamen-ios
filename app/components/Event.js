@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, Dimensions, View, Text, StyleSheet } from 'react-native'
+import { ImageBackground, Dimensions, View, Text, StyleSheet, StatusBar } from 'react-native'
 import { Container, Content, Button, Header, Left, Body, Right, Icon, H1 } from 'native-base'
 import moment from 'moment'
 import PropTypes from 'prop-types'

@@ -1,9 +1,10 @@
 import React from 'react'
 import {
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   Dimensions,
   View,
+  StatusBar,
   Image
 } from 'react-native'
 import {
@@ -37,6 +38,10 @@ const { width, height } = Dimensions.get('window')
 
 const EditProfile = (props) => (
   <Container style={styles.container}>
+    <StatusBar
+      backgroundColor="#fff"
+      barStyle="light-content"
+    />
     <DateTimePicker
       isVisible={props.visibleDatePicker}
       onConfirm={props.handlePickDate}
@@ -46,7 +51,7 @@ const EditProfile = (props) => (
         <Icon name='md-arrow-back' style={styles.icon} onPress={props.handleBack} />
       </Left>
       <Body>
-        <Title style={styles.headerText}>Edit Profile</Title>
+        <Title style={{color: '#fff'}}>Edit Profile</Title>
       </Body>
       <Right />
     </Header>
@@ -57,11 +62,11 @@ const EditProfile = (props) => (
         ) : (
           <Thumbnail source={defaultAvatar} />
         )}
-        <TouchableHighlight onPress={props.handlePickAvatar}>
+        <TouchableOpacity onPress={props.handlePickAvatar}>
           <View>
             <Text style={styles.valid}>Ganti Foto Profil</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <Form style={styles.form}>
         <Item stackedLabel>
@@ -131,9 +136,6 @@ EditProfile.propTypes = {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#106538"
-  },
-  headerText:{
-    color: '#fff'
   },
   icon: {
     color: "#fff"

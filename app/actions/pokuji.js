@@ -6,7 +6,7 @@ export const fetchPokUji = (accessToken) => {
 	return async dispatch => {
 		await dispatch(setLoading(true, 'LOADING_FETCH_POK_UJI'))
 		try {
-			const response = await fetch(`${API_SERVER}/pokuji-documents`, {
+			const response = await fetch(`${API_SERVER}/pokuji-documents?status=1`, {
 				method: 'GET',
 				headers: {
 					Accept: 'application/json',

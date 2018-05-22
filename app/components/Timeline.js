@@ -23,14 +23,14 @@ import ThemeContainer from '../particles/ThemeContainer'
 
 const Timeline = (props) => (
   <Container style={styles.container}>
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Button transparent onPress={props.handleBack}>
           <Icon name='arrow-back' />
         </Button>
       </Left>
       <Body>
-        <Title style={styles.headerText}>Kegiatan</Title>
+        <Title>Kegiatan</Title>
       </Body>
       <Right />
     </Header>
@@ -66,12 +66,6 @@ Timeline.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: '#146639'
-  },
-  headerText:{
-    color: '#fff'
-  },
   container: {
     backgroundColor: "#fff"
   },

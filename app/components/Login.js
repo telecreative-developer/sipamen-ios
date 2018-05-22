@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native'
-import { Container, Item, Input, Text, Form } from 'native-base'
+import { Container, Item, Input, Text } from 'native-base'
 import PropsTypes from 'prop-types'
 import ThemeContainer from '../particles/ThemeContainer'
 import image from '../assets/images/logo.png'
@@ -11,24 +11,22 @@ const Login = (props) => (
   <Container style={styles.container}>
     <Image source={image} style={styles.image} />
     <View style={styles.formLogin}>
-      <Form>
-        <Item regular style={styles.item}>
-          <Input
-            keyboardType='email-address'
-            placeholder='Email Anda'
-            style={styles.input}
-            value={props.valueEmail}
-            onChangeText={props.onChangeEmail} />
-        </Item>
-        <Item regular style={styles.item}>
-          <Input
-            secureTextEntry
-            placeholder='Password'
-            style={styles.input}
-            value={props.valuePassword}
-            onChangeText={props.onChangePassword} />
-        </Item>
-      </Form>
+      <Item regular style={styles.item}>
+        <Input
+          keyboardType='email-address'
+          placeholder='Email Anda'
+          style={styles.input}
+          value={props.valueEmail}
+          onChangeText={props.onChangeEmail} />
+      </Item>
+      <Item regular style={styles.item}>
+        <Input
+          secureTextEntry
+          placeholder='Password'
+          style={styles.input}
+          value={props.valuePassword}
+          onChangeText={props.onChangePassword} />
+      </Item>
       {props.renderButtons}
       <TouchableOpacity onPress={props.navigateToRegister} style={{alignItems: 'center', margin: 20}}>
         <Text style={{fontSize: 12, color: '#212121'}}>Belum mempunyai akun? Daftar disini</Text>

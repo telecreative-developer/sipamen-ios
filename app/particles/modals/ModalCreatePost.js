@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, Image, View, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import { Dimensions, Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text, Header, Spinner, Content, Left, Body, Right, Button, Title, Thumbnail, Icon, Item, Input, ListItem, Footer, FooterTab } from 'native-base'
 import Modal from 'react-native-modal'
 import PropTypes from 'prop-types'
