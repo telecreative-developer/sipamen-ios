@@ -1,4 +1,4 @@
-export const API_SERVER='http://45.77.45.112'
+export const API_SERVER='http://18.219.168.208:3030'
 export const TWITTER_CLIENT_CREDENTIAL='https://api.twitter.com/oauth2/token'
 export const TWITTER_SEARCH_TWEETS='https://api.twitter.com/1.1/statuses/user_timeline.json'
 export const TWITTER_CUSTOMER_KEY='qgdk0Mj3sJqFTAlCucHBqt94K'
