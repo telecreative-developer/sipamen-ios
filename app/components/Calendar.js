@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Container, Header, Left, Body, Right,  Icon, Title } from 'native-base'
+import { Container, Header, Left, Body, Button, Right,  Icon, Title } from 'native-base'
 import ThemeContainer from '../particles/ThemeContainer'
 import PropTypes from 'prop-types'
 import { Agenda } from 'react-native-calendars'
@@ -9,7 +9,9 @@ const Calendar = (props) => (
   <Container style={styles.container}>
     <Header>
       <Left>
-        <Icon name='arrow-back' style={styles.icon} onPress={props.handleBack} />
+        <Button transparent>
+          <Icon name='arrow-back' onPress={props.handleBack} />
+        </Button>
       </Left>
       <Body>
         <Title>Kalender</Title>

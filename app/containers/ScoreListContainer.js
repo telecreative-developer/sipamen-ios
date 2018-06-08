@@ -27,8 +27,9 @@ const scoreMenu = [
 	}
 ]
 
-class ScoreListContainer extends React.PureComponent {
-	componentWillUnmout() {
+class ScoreListContainer extends React.Component {
+
+	componentWillUnmount() {
 		this.props.setNavigate()
 	}
 
@@ -43,8 +44,7 @@ class ScoreListContainer extends React.PureComponent {
 						return (
 							<ListItem 
 								button 
-								onPress={()=> this.props.navigation.navigate('AcademicCategories', item)}
-							>
+								onPress={()=> this.props.navigation.navigate('AcademicCategories', item)}>
 								<Text>{item.menu}</Text>
 							</ListItem>
 						)
@@ -52,8 +52,7 @@ class ScoreListContainer extends React.PureComponent {
 					return (
 						<ListItem 
 							button 
-							onPress={()=> this.props.navigation.navigate('TitleScores', {title: item.menu, table: item.table})}
-						>
+							onPress={()=> this.props.navigation.navigate('TitleScores', {title: item.menu, table: item.table})}>
 							<Text>{item.menu}</Text>
 						</ListItem>
 					)

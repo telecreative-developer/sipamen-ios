@@ -20,6 +20,7 @@ class DocumentListContainer extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    this.handleBack()
     BackHandler.removeEventListener('hardwareBackPress', this.backPressed)
   }
 

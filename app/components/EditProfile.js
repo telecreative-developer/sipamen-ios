@@ -88,10 +88,10 @@ const EditProfile = (props) => (
           <Label>Tempat Lahir</Label>
           <Input onChangeText={props.onChangeBOP} value={props.bop} />
         </Item>
-        <Item style={styles.itemForm} stackedLabel onPress={props.onChangeBOD}>
-          <Label>Tanggal lahir</Label>
-          <Input disabled value={moment(props.bod).format('LL')} />
-        </Item>
+        <TouchableOpacity style={styles.fieldBOD} onPress={props.onChangeBOD}>
+          <Text style={styles.textBOD}>Tanggal lahir</Text>
+          <Text style={styles.bod}>{moment(props.bod).format('LL')}</Text>
+        </TouchableOpacity>
         <Item stackedLabel style={styles.itemForm}>
           <Label>Angkatan</Label>
           <Input onChangeText={props.onChangeForceOf} value={props.forceOf} />
@@ -186,6 +186,19 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingHorizontal: "10%",
     borderColor: "#db4039"
+  },
+  fieldBOD: {
+    marginLeft: 15,
+    marginTop: 10,
+    borderBottomWidth: 0.3,
+    borderColor: '#9E9E9E'
+  },
+  textBOD: {
+    color: '#616161',
+    marginBottom: 10
+  },
+  bod: {
+    marginBottom: 10
   }
 })
 
